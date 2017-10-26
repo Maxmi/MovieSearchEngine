@@ -1,0 +1,19 @@
+extends layout 
+block content
+  if email
+    h1 Welcome back #{email}!
+    h2 Your Search History 
+    
+      //- table#responseTable
+      //-   tr
+      //-     th Search Term
+      //-     th Date
+      //-   each search in searches 
+      //-     tr
+      //-       td= search.movie_title
+      //-       td= search.date 
+    a#logoutlink(href='logout') Log Out
+  else   
+    h2 You need to be logged in to access this page
+    br    
+    a#loginlink(href='login') Log In  
