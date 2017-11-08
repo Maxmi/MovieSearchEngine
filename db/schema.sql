@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS searches;
 
 CREATE TABLE searches (
   search_id SERIAL PRIMARY KEY,
-  search_date DATE,
+  search_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   search_term text NOT NULL,
   user_id INTEGER REFERENCES users
 );
@@ -29,5 +29,10 @@ CREATE TABLE searches (
 --   movie_id SERIAL PRIMARY KEY,
 --   movie_title varchar(255) UNIQUE NOT NULL,
 --   user_id INTEGER REFERENCES users 
+-- );
+-- CREATE TABLE note(
+--     note_id serial PRIMARY KEY,
+--     message varchar(255) NOT NULL,
+--     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 -- );
 
