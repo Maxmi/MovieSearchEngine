@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
+const exp = require('express-session');
 const routes = require('./routes/index');
 
 const port = process.env.PORT || 3000;
@@ -10,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//use sessions for tracking logins
+//use sessions for tracking logins with cookie-session
 app.use(session({
   name: 'session',
   keys: ['supersecretkey']
@@ -43,7 +44,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-//listen 
+//listen
 app.listen(port, () => {
   console.log('App is listening on port ' + port);
 });

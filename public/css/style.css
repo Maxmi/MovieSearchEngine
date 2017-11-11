@@ -5,10 +5,6 @@ body {
   font-size: 16px;
 }
 
-form {
-  width: 30%;
-}
-
 label {
   display: inline-block;
   width: 25%;
@@ -23,7 +19,7 @@ input {
 
 input#searchField {
   display: inline-block;
-  width: 70%;
+  width: 45%;
   box-shadow: 2px 2px;
 }
 
@@ -39,7 +35,7 @@ button {
 
 button#searchBtn {
   display: inline-block;
-  margin: 5px;
+  margin: 10px;
 }
 
 a {
@@ -47,7 +43,7 @@ a {
   margin: 15px;
 }
 
-table, td, th {
+/*table, td, th {
   border: 2px solid black;
   border-collapse: collapse;
   padding: 5px;
@@ -56,17 +52,14 @@ table, td, th {
 th {
   background-color: lightgray;
   text-align: center;
-}
+}*/
 
 p {
   color: red;
 }
 
-li.movieInfo {
-  color: blue;
-  padding: 5px;
-}
-
-li.movieInfo a {
-  display: inline;
+div.movieInfo {
+  width: 50%;
+  padding: 20px;
+  border: 1px solid black;
 }

@@ -20,7 +20,7 @@ const getUser = (email, password) => db.one(
 );
 
 const saveSearch = (search_term, user_id) => db.one(
-  `INSERT INTO searches (search_term, user_id) VALUES ($1, $2) RETURNING *;`,
+  `INSERT INTO searches (search_term, email) VALUES ($1, $2) RETURNING *;`,
   [search_term, user_id]
 );
 

@@ -6,5 +6,9 @@ bcrypt is used for password encryption
 Clone/Fork
 Install npm packages - npm install  
 Create database - npm run db:create  
-Load db with initial data - npm run db:init  
+Load db with initial data - npm run db:init  (not necessary)
 To run the app - npm start  
+
+
+//for next TIME
+make get request to history - select * where user email = myemail

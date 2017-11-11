@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   })
 });
 
-//route to signup page - GET 
+//route to signup page - GET
 router.get('/signup', (req, res) => {
   res.render('signup', {
     title: 'Sign Up',
@@ -47,7 +47,7 @@ router.post('/signup', (req, res) => {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       addUser(email, hash)
         .then(user => {
-          //start tracking the user 
+          //start tracking the user
           req.session.userID = user.email;
           res.redirect('/');
         })
@@ -57,14 +57,13 @@ router.post('/signup', (req, res) => {
             title: 'Sign Up',
             error: 'Could not add user to database'
           })
-          // return err;
         })
     })
   }
 });
 
 
-//route to login page - GET 
+//route to login page - GET
 router.get('/login', (req, res) => {
   res.render('login', {
     title: 'Log In',
@@ -73,13 +72,13 @@ router.get('/login', (req, res) => {
   });
 });
 
-//route to login page - POST  
+//route to login page - POST
 router.post('/login', (req, res) => {
   const {
     email,
     password
   } = req.body
-  //check if user filled both inputs 
+  //check if user filled both inputs
   if (!email || !password) {
     res.render('login', {
       title: 'Log In',
@@ -107,20 +106,12 @@ router.post('/login', (req, res) => {
           error: 'Could not find this user in db.'
         })
       })
-    // return err;
   }
 });
 
-//object 
-router.get('/getProfile/', (req, res) => {
-  res.send({
-    email: req.session.userID
-  })
-});
-
-//route to logout 
+//route to logout
 router.get('/logout', (req, res, next) => {
-  //if this is authenticated user - delete cookies 
+  //if this is authenticated user - delete cookies
   if (req.session) {
     req.session = null;
     res.redirect('/');
@@ -130,38 +121,39 @@ router.get('/logout', (req, res, next) => {
 });
 
 
-//save searches in db 
-router.post('/', (req, res) => {
-  const searchDate = Date.now();
-  console.log(searchDate);
-  const searchTerm = req.body.searchField;
-  console.log(searchTerm);
-  const userID = req.session.userID;
-  console.log(userID);
-
-  addSearch(searchDate, searchTerm, userID)
-    .then(console.log('Saved this search into db'))
-    .catch(err => {
-      console.log('Could not save this search to db');
-    })
-});
-
-
-
-
-
-//route to history page - GET 
-router.get('/history', (req, res, next) => {
-  res.render('history', {
-    title: 'Search History Page',
-    error: '',
+//object
+router.get('/getProfile/', (req, res) => {
+  res.send({
     email: req.session.userID
   })
 });
 
 
 
+//save searches in db
+router.post('/history', (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  const userID = req.session.userID;
+
+  saveSearch(searchTerm, userID)
+    .then(console.log('Saved this search into db'))
+    .catch(err => {
+      console.log('Could not save this search to db');
+      // console.log(err);
+    })
+});
+
+
+//route to history page - GET
+// router.get('/history', (req, res, next) => {
+//   res.render('history', {
+//     title: 'Search History Page',
+//     error: '',
+//     email: req.session.userID
+//   })
+// });
+
+
+
 
 module.exports = router;
-
-//need to write POST that will save all info about search (like add User) will send it to INSERT will pass searchData 

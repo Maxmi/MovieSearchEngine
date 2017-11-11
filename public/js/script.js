@@ -1,10 +1,7 @@
 // const {saveSearch} = require('../db/db_utils');
 
-const getProfile = () => {
-  return $.ajax({
-    method: 'GET',
-    url: '/getProfile'
-  })
+const saveSearchData = (searchTerm) => {
+  return $.post('/history', {searchTerm}).catch(err => {console.log(err)});
 };
 
 $(document).ready(() => {
@@ -12,10 +9,7 @@ $(document).ready(() => {
     e.preventDefault(); //prevents the form from being submitted as normally
     let searchField = $('#searchField');
     let searchTerm = searchField.val();
-    getProfile().then(profile => {
-      console.log(profile);
-      saveSearch(searchTerm)
-    });
+    saveSearchData(searchTerm);
     getMovies(searchTerm);
 
   })
@@ -35,12 +29,16 @@ const getMovies = (searchTerm) => {
         $('#responseContainer').html(content);
         $('#searchField').val('');
       } else {
-        content = '<h2>Search Results</h2>' + '<ul>' + res.results.map(movie =>
-          `<li class='movieInfo'>
-            ${movie.original_title} --- ${movie.release_date} --- <img src='https://image.tmdb.org/t/p/w300/${movie.poster_path}' height="150"/>
-          </li>`
-        ).join('') + '</ul>';
-        //add the generated content to the page 
+        content = '<h2>Search Results</h2>' + '<div>' + res.results.map(movie =>
+          `<div class="movieInfo">
+            <div class='title'>
+            ${movie.original_title}</div>
+            <div class='date'>${movie.release_date}</div>
+            <div class='image'>
+            <img src='https://image.tmdb.org/t/p/w300/${movie.poster_path}' height="150"/></div>
+            </div>`
+        ).join('') + '</div>';
+        //add the generated content to the page
         $('#responseContainer').html(content);
         //clear the searchField
         $('#searchField').val('');
