@@ -3,4 +3,3 @@ INSERT INTO users (email, password) VALUES
 
 INSERT INTO searches (search_term, user_id) VALUES
   ('batman', 1);
-

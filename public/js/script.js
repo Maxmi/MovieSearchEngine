@@ -31,11 +31,11 @@ const getMovies = (searchTerm) => {
       } else {
         content = '<h2>Search Results</h2>' + '<div>' + res.results.map(movie =>
           `<div class="movieInfo">
-            <div class='title'>
-            ${movie.original_title}</div>
-            <div class='date'>${movie.release_date}</div>
-            <div class='image'>
-            <img src='https://image.tmdb.org/t/p/w300/${movie.poster_path}' height="150"/></div>
+            <span class='image'>
+            <img src='https://image.tmdb.org/t/p/w300/${movie.poster_path}' height="150"/></span>
+            <span class='title'>
+            ${movie.original_title}</span>
+            <span class='date'>(${movie.release_date})</span>
             </div>`
         ).join('') + '</div>';
         //add the generated content to the page

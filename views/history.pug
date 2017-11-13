@@ -1,17 +1,19 @@
 extends layout 
 block content
   if email
-    h1 Welcome back #{email}!
-    h2 Your Search History 
-    
-      //- table#responseTable
-      //-   tr
-      //-     th Search Term
-      //-     th Date
-      //-   each search in searches 
-      //-     tr
-      //-       td= search.movie_title
-      //-       td= search.date 
+    h2 Hi #{email}!
+    h2 Your Search History
+    div#output
+      table
+        tr
+          th Search Date
+          th Search Term
+          
+        each item in data
+          tr
+            td= item.search_date.toString().slice(0,25)
+            td= item.search_term.toLowerCase()  
+      
     a#logoutlink(href='logout') Log Out
   else   
     h2 You need to be logged in to access this page

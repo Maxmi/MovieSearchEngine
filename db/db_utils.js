@@ -24,9 +24,9 @@ const saveSearch = (search_term, user_id) => db.one(
   [search_term, user_id]
 );
 
-const getSearchHistory = () => db.any(
-  `SELECT search_term, search_date FROM searches WHERE user_id = $1;`, [user_id]
-);
+const getSearchHistory = (email) => {return db.any(
+  `SELECT search_date, search_term FROM searches WHERE email = $1;`, [email]
+)};
 
 
 const closeConnection = () => {
@@ -37,5 +37,6 @@ module.exports = {
   addUser,
   getUser,
   saveSearch,
-  getSearchHistory
+  getSearchHistory,
+  closeConnection
 };
