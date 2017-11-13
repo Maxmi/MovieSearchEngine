@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node app.js",
     "db:create": "psql -f db/schema.sql",
-    "db:init": "psql moviesearchengine < ./db/init_data.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,6 +22,5 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "pg-monitor": "^0.8.3"
   }
 }

@@ -99,13 +99,6 @@ router.get('/logout', (req, res, next) => {
   }
 });
 
-//object
-// router.get('/getProfile/', (req, res) => {
-//   res.send({
-//     email: req.session.userID
-//   })
-// });
-
 //save searches in db
 router.post('/history', (req, res) => {
   const searchTerm = req.body.searchTerm;

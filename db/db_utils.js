@@ -1,7 +1,7 @@
 const pgp = require('pg-promise')();
-const monitor = require('pg-monitor');
+// const monitor = require('pg-monitor');
 
-monitor.attach({});
+// monitor.attach({});
 
 const connectionOptions = {
   host: 'localhost',
