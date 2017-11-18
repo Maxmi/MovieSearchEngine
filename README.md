@@ -1,7 +1,6 @@
-My solution to # MovieSearchEngine benchmark of Learners Guild curriculum
+My implementation of # MovieSearchEngine benchmark of Learners Guild curriculum
 
 Application built with Node, Express, Postgres, jquery AJAX, Pug.  
-bcrypt is used for password encryption
 
 Clone/Fork
 Install npm packages - npm install  

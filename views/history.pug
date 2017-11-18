@@ -2,8 +2,12 @@ extends layout
 block content
   if email
     h2 Hi #{email}!
-    h2 Your Search History
-    div#output
+    div#links
+      a#goBacklink(href='/') Go Back to Search Page
+      a#logoutlink(href='logout') Log Out
+    
+    h3 Your Search History
+    div#history 
       table
         tr
           th Search Date
@@ -14,7 +18,7 @@ block content
             td= item.search_date.toString().slice(0,25)
             td= item.search_term.toLowerCase()  
       
-    a#logoutlink(href='logout') Log Out
+
   else   
     h2 You need to be logged in to access this page
     br    

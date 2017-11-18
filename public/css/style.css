@@ -1,69 +1,108 @@
 body {
   width: 90%;
   margin: 0 auto;
-  font-family: sans-serif;
+  font-family: serif, sans-serif, monospace;
   font-size: 16px;
+  background-image: url('../images/jake-hills-194864.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  text-align: center;
 }
 
-label {
-  display: inline-block;
-  width: 25%;
+#form {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 5px auto;
+  background: transparen;
 }
 
 input {
-  padding: 5px;
-  margin-bottom: 20px;
   border: 1px solid black;
   font-size: 14px;
+}
+
+input#email, input#password {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
 }
 
 input#searchField {
   display: inline-block;
   width: 45%;
-  box-shadow: 2px 2px;
+  padding: 10px;
 }
 
-button {
-  display: block;
-  box-shadow: 2px 2px;
-  padding: 5px 10px;
-  margin: 5px 150px 0;
+button#searchBtn, #loginBtn, #signupBtn, #goBacklink {
+  display: inline-block;
+  padding: 10px 15px;
+  font-family: serif, sans-serif, monospace;
   background-color: white;
-  border: 1px solid black;
-  font-size: 12px;
+  font-size: 16px;
+  border: none;
 }
 
 button#searchBtn {
-  display: inline-block;
   margin: 10px;
 }
 
 a {
-  display: block;
-  margin: 15px;
-}
-
-table, td, th {
-  border: 2px solid black;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-th {
-  background-color: lightgray;
-  text-align: center;
+  display: inline-block;
+  margin: 5px 15px;
+  padding: 10px 15px;
+  text-decoration: none;
+  background-color: white;
 }
 
 p {
   color: red;
 }
 
+div#responseContainer {
+  width: 90%;
+  margin: 0 auto;
+}
+
 div.movieInfo {
-  width: 50%;
+  width: 70%;
+  margin: 0 auto;
   padding: 10px;
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
+  opacity: 0.7;
+  background-color: #ffffff;
+  color: black;
+  font-size: 20px;
+}
+
+div#history {
+  width: 70%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  opacity: 0.7;
+}
+
+div#links {
+  width: 90%;
+  margin: 0 auto;
+}
+
+table {
+  width: 50%;
+  margin: 0 auto;
+  color: black;
+}
+
+table, td, th {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+th {
+  text-align: center;
 }
 
 span.image, span.title, span.date {

@@ -1,5 +1,3 @@
-// const {saveSearch} = require('../db/db_utils');
-
 const saveSearchData = (searchTerm) => {
   return $.post('/history', {searchTerm}).catch(err => {console.log(err)});
 };
@@ -22,7 +20,6 @@ const getMovies = (searchTerm) => {
       dataType: 'json'
     })
     .then(res => {
-      // console.log(res);
       let content = '';
       if (res.total_results === 0) {
         content = `<p>Nothing found on "${searchTerm}"</p>`;
@@ -35,7 +32,7 @@ const getMovies = (searchTerm) => {
             <img src='https://image.tmdb.org/t/p/w300/${movie.poster_path}' height="150"/></span>
             <span class='title'>
             ${movie.original_title}</span>
-            <span class='date'>(${movie.release_date})</span>
+            <span class='date'>${movie.release_date}</span>
             </div>`
         ).join('') + '</div>';
         //add the generated content to the page
