@@ -12,7 +12,8 @@ const connectionOptions = {
 const db = pgp(connectionOptions);
 
 const addUser = (email, password) => db.one(
-  `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *;`, [email, password]
+  `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *;`,
+  [email, password]
 );
 
 const getUser = (email, password) => db.one(
@@ -38,5 +39,5 @@ module.exports = {
   getUser,
   saveSearch,
   getSearchHistory,
-  closeConnection
+  closeConnection,
 };

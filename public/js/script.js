@@ -1,9 +1,10 @@
 const saveSearchData = (searchTerm) => {
-  return $.post('/history', {searchTerm}).catch(err => {console.log(err)});
+  return $.post('/history', {searchTerm})
+  .catch(err => {console.log(err)});
 };
 
 $(document).ready(() => {
-  $('#searchForm').submit(e => {
+  $('#searchForm').submit((e) => {
     e.preventDefault(); //prevents the form from being submitted as normally
     let searchField = $('#searchField');
     let searchTerm = searchField.val();

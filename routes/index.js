@@ -34,7 +34,8 @@ router.post('/signup', (req, res) => {
   } else {
     // hash the password and add user info to db
     bcrypt.hash(password, saltRounds, (err, hash) => {
-      addUser(email, hash).then((user) => {
+      addUser(email, hash)
+      .then((user) => {
         // start tracking the user
         req.session.userID = user.email;
         res.redirect('/');
@@ -67,8 +68,10 @@ router.post('/login', (req, res) => {
       error: 'Please provide email and password to log in',
     });
   } else {
-    getUser(email, password).then((user) => {
-      bcrypt.compare(password, user.password).then((result) => {
+    getUser(email, password)
+    .then((user) => {
+      bcrypt.compare(password, user.password)
+      .then((result) => {
         if (result) {
           req.session.userID = user.email,
           res.redirect('/');
@@ -101,10 +104,12 @@ router.get('/logout', (req, res, next) => {
 
 // save searches in db
 router.post('/history', (req, res) => {
-  const searchTerm = req.body.searchTerm;
-  const userID = req.session.userID;
+  const { searchTerm } = req.body;
+  const { userID } = req.session;
 
-  saveSearch(searchTerm, userID).then(console.log('Saved this search into db')).catch((err) => {
+  saveSearch(searchTerm, userID)
+  .then(console.log('Saved this search into db'))
+  .catch((err) => {
     console.log('Could not save this search to db');
   });
 });
@@ -113,7 +118,8 @@ router.post('/history', (req, res) => {
 router.get('/history', (req, res) => {
   const email = req.session.userID;
 
-  getSearchHistory(email).then((searches) => {
+  getSearchHistory(email)
+  .then((searches) => {
     res.render('history', {
       title: 'Search History',
       error: '',
