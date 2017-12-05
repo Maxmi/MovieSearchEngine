@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS moviesearchengine;
-CREATE DATABASE moviesearchengine;
-
-\c moviesearchengine
+-- DROP DATABASE IF EXISTS moviesearchengine;
+-- CREATE DATABASE moviesearchengine;
+--
+-- \c moviesearchengine
 
 -- each user can have many searches
 -- each search can be done by many users
