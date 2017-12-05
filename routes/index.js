@@ -35,16 +35,16 @@ router.post('/signup', (req, res) => {
     // hash the password and add user info to db
     bcrypt.hash(password, saltRounds, (err, hash) => {
       addUser(email, hash)
-      .then((user) => {
+        .then((user) => {
         // start tracking the user
-        req.session.userID = user.email;
-        res.redirect('/');
-      }).catch((err) => {
-        res.render('signup', {
-          title: 'Sign Up',
-          error: 'Could not add user to database',
+          req.session.userID = user.email;
+          res.redirect('/');
+        }).catch((err) => {
+          res.render('signup', {
+            title: 'Sign Up',
+            error: 'Could not add user to database',
+          });
         });
-      });
     });
   }
 });
@@ -69,25 +69,25 @@ router.post('/login', (req, res) => {
     });
   } else {
     getUser(email, password)
-    .then((user) => {
-      bcrypt.compare(password, user.password)
-      .then((result) => {
-        if (result) {
-          req.session.userID = user.email,
-          res.redirect('/');
-        } else {
+      .then((user) => {
+        bcrypt.compare(password, user.password)
+          .then((result) => {
+            if (result) {
+              req.session.userID = user.email,
+              res.redirect('/');
+            } else {
           res.render('login', {
-            title: 'Log In',
-            error: 'Wrong password. Please try again.',
+                title: 'Log In',
+                error: 'Wrong password. Please try again.',
+              });
+            }
           });
-        }
+      }).catch((err) => {
+        res.render('login', {
+          title: 'Log In',
+          error: 'Could not find this user in db.',
+        });
       });
-    }).catch((err) => {
-      res.render('login', {
-        title: 'Log In',
-        error: 'Could not find this user in db.',
-      });
-    });
   }
 });
 
@@ -108,10 +108,10 @@ router.post('/history', (req, res) => {
   const { userID } = req.session;
 
   saveSearch(searchTerm, userID)
-  .then(console.log('Saved this search into db'))
-  .catch((err) => {
-    console.log('Could not save this search to db');
-  });
+    .then(console.log('Saved this search into db'))
+    .catch((err) => {
+      console.log('Could not save this search to db');
+    });
 });
 
 // route to history page - GET
@@ -119,16 +119,16 @@ router.get('/history', (req, res) => {
   const email = req.session.userID;
 
   getSearchHistory(email)
-  .then((searches) => {
-    res.render('history', {
-      title: 'Search History',
-      error: '',
-      email: req.session.userID,
-      data: searches,
+    .then((searches) => {
+      res.render('history', {
+        title: 'Search History',
+        error: '',
+        email: req.session.userID,
+        data: searches,
+      });
+    }).catch((err) => {
+      console.log('Could not retrieve data from db');
     });
-  }).catch((err) => {
-    console.log('Could not retrieve data from db');
-  });
 });
 
 module.exports = router;

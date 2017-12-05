@@ -3,13 +3,17 @@ const pgp = require('pg-promise')();
 
 // monitor.attach({});
 
-const connectionOptions = {
-  host: 'localhost',
-  port: 5432,
-  database: process.env.NODE_ENV === 'test' ? 'moviesearchengine_test' : 'moviesearchengine'
-};
+// const connectionOptions = {
+//   host: 'localhost',
+//   port: 5432,
+//   database: process.env.NODE_ENV === 'test' ? 'moviesearchengine_test' : 'moviesearchengine'
+// };
+//
+const connectionString = `${process.env.DATABASE_URL}?ssl=${process.env.DB_SSL || true}` || 'postgres://localhost:5432/moviesearchengine';
 
-const db = pgp(connectionOptions);
+console.log(process.env.DATABASE_URL);
+
+const db = pgp(connectionString);
 
 const addUser = (email, password) => db.one(
   `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *;`,
@@ -39,5 +43,5 @@ module.exports = {
   getUser,
   saveSearch,
   getSearchHistory,
-  closeConnection,
+  closeConnection
 };

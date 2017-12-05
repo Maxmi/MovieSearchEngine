@@ -10,17 +10,16 @@ $(document).ready(() => {
     let searchTerm = searchField.val();
     saveSearchData(searchTerm);
     getMovies(searchTerm);
-
-  })
+  });
 });
 
 const getMovies = (searchTerm) => {
   $.ajax({
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/search/movie?api_key=88423b3772a17526c8dc420cae5a84a8&query=${searchTerm}`,
-      dataType: 'json'
-    })
-    .then(res => {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/search/movie?api_key=88423b3772a17526c8dc420cae5a84a8&query=${searchTerm}`,
+    dataType: 'json',
+  })
+    .then((res) => {
       let content = '';
       if (res.total_results === 0) {
         content = `<p>Nothing found on "${searchTerm}"</p>`;
@@ -34,11 +33,10 @@ const getMovies = (searchTerm) => {
             <span class='title'>
             ${movie.original_title}</span>
             <span class='date'>${movie.release_date}</span>
-            </div>`
-        ).join('') + '</div>';
-        //add the generated content to the page
+            </div>` ).join('') + '</div>';
+        // add the generated content to the page
         $('#responseContainer').html(content);
-        //clear the searchField
+        // clear the searchField
         $('#searchField').val('');
       }
 
