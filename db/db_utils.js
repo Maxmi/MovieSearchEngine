@@ -1,17 +1,24 @@
 const pgp = require('pg-promise')();
-// const monitor = require('pg-monitor');
 
-// monitor.attach({});
+let dbName = process.env.DB_NAME;
 
-// const connectionOptions = {
-//   host: 'localhost',
-//   port: 5432,
-//   database: process.env.NODE_ENV === 'test' ? 'moviesearchengine_test' : 'moviesearchengine'
-// };
-//
-const connectionString = `${process.env.DATABASE_URL}?ssl=${process.env.DB_SSL || true}` || 'postgres://localhost:5432/moviesearchengine';
 
-console.log(process.env.DATABASE_URL);
+if (process.env.NODE_ENV === 'test') {
+  dbName = "moviesearchengine_test";
+} else if (process.env.NODE_ENV === "development") {
+  dbName = "moviesearchengine";
+}
+
+let connectionString = `${process.env.DATABASE_URL}${dbName}?ssl=${process.env.DB_SSL || true}`;
+
+if(process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'development') {
+  connectionString = `${process.env.DATABASE_URL}?ssl=${process.env.DB_SSL || true}`;
+}
+
+
+console.log(connectionString);
+console.log(process.env.NODE_ENV);
+
 
 const db = pgp(connectionString);
 
