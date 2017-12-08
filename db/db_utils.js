@@ -1,24 +1,11 @@
 const pgp = require('pg-promise')();
 
-let dbName = process.env.DB_NAME;
+const connectionString = `${process.env.DATABASE_URL}${process.env.NODE_ENV === 'test' ? '_test' : ''}?ssl=${process.env.DB_SSL || true}`;
 
 
-if (process.env.NODE_ENV === 'test') {
-  dbName = "moviesearchengine_test";
-} else if (process.env.NODE_ENV === "development") {
-  dbName = "moviesearchengine";
-}
-
-let connectionString = `${process.env.DATABASE_URL}${dbName}?ssl=${process.env.DB_SSL || true}`;
-
-if(process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'development') {
-  connectionString = `${process.env.DATABASE_URL}?ssl=${process.env.DB_SSL || true}`;
-}
-
-
-console.log(connectionString);
-console.log(process.env.NODE_ENV);
-
+// console.log(connectionString);
+// console.log(process.env.NODE_ENV);
+//
 
 const db = pgp(connectionString);
 
