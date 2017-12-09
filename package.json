@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "db:create": "psql -f db/schema.sql",
-    "db:heroku:create": "psql -h $HOSTNAME -U $UNAME -d $DB -W $PW < db/schema.sql",
+    "db:heroku:create": "psql -h $HOSTNAME -U $UNAME -d $DB_NAME -W $PW < db/schema.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

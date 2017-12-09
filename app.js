@@ -17,7 +17,6 @@ app.use(session({
   keys: ['supersecretkey'],
 }));
 
-
 // serve static files from /public
 app.use(express.static(`${__dirname}/public`));
 

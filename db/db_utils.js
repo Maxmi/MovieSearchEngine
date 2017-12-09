@@ -2,11 +2,6 @@ const pgp = require('pg-promise')();
 
 const connectionString = `${process.env.DATABASE_URL}${process.env.NODE_ENV === 'test' ? '_test' : ''}?ssl=${process.env.DB_SSL || true}`;
 
-
-// console.log(connectionString);
-// console.log(process.env.NODE_ENV);
-//
-
 const db = pgp(connectionString);
 
 const addUser = (email, password) => db.one(
