@@ -5,9 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "db:create": "psql -f db/schema.sql",
+    "db:create": "dropdb --if-exists moviesearchengine && createdb moviesearchengine",
+    "db:schema": "psql moviesearchengine < db/schema.sql",
+    "db:drop": "dropdb moviesearchengine",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:schema",
     "db:heroku:create": "psql -h $HOSTNAME -U $UNAME -d $DB_NAME -W $PW < db/schema.sql",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js"
   },
   "engines": {
     "node": "8.7.0"
@@ -26,6 +30,7 @@
     "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
+    "nodemon": "^1.11.0",
     "ajv": "^5.3.0",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
