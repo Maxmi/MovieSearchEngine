@@ -12,10 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // use sessions for tracking logins with cookie-session
-app.use(session({
-  name: 'session',
-  keys: ['supersecretkey'],
-}));
+app.use(
+  session({
+    name: 'session',
+    keys: ['supersecretkey']
+  })
+);
 
 // serve static files from /public
 app.use(express.static(`${__dirname}/public`));
@@ -39,7 +41,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: err,
+    error: err
   });
 });
 
