@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('cookie-session');
 const routes = require('./routes/index');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3333;
 const app = express();
 
 // parse incoming requests
@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   session({
     name: 'session',
+
+    // bds: this should not be in the file committed to github!! 
+    // It should be in a .env or config file that doesn't go to github
+    // Never commit your secrets to github ;-)
     keys: ['supersecretkey']
   })
 );
