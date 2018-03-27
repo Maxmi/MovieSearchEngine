@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const saltRounds = 10; // bds: all "require"s should come before all non-require code
 
 const { addUser, getUser } = require('../db/actions');
 
@@ -8,7 +8,9 @@ const { addUser, getUser } = require('../db/actions');
 router.get('/signup', (req, res) => {
   res.render('signup', {
     title: 'Sign Up',
-    error: '',
+    // bds: can you update your templates so you don't have to include "error" at all if 
+    // bds: there's no error? 
+    error: '', 
     email: req.session.userID // setting property email on req session obj
   });
 });
@@ -18,7 +20,9 @@ router.post('/signup', (req, res) => {
   const { email, password } = req.body;
 
   // confirm that user filled all inputs
-  if (!(email || password)) {
+  // bds: I think you mean !email || !password, or !(email && password)
+  // bds: this logic allowed me to sign up with a blank password...
+  if (!(email || password)) { 
     res.render('signup', {
       title: 'Sign Up',
       error: 'Please provide email and password to sign up'
@@ -33,6 +37,8 @@ router.post('/signup', (req, res) => {
           res.redirect('/');
         })
         .catch(err => {
+          // bds: it would be a better user experience if you sent an error
+          // bds: page, rather than plain JSON
           res.status(400).json({
             message: `Failed to add user to db: ${err.toString()}`
           });
@@ -45,6 +51,8 @@ router.post('/signup', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login', {
     title: 'Log In',
+    // bds: can you update your templates so you don't have to include "error" at all if 
+    // bds: there's no error? 
     error: '',
     email: req.session.userID
   });
@@ -54,7 +62,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
   // check if user filled both inputs
-  if (!email || !password) {
+  if (!email || !password) { // bds: ah, this is better logic :-D
     res.render('login', {
       title: 'Log In',
       error: 'Please provide email and password to log in'
@@ -84,6 +92,7 @@ router.post('/login', (req, res) => {
 
 // route to logout
 router.get('/logout', (req, res, next) => {
+  // bds: here, you're deleting the session data, not the cookie
   // if this is authenticated user - delete cookies
   if (req.session) {
     req.session = null;

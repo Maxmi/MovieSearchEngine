@@ -1,12 +1,19 @@
 const db = require('./db_utils');
 
+// bds: Remove unnecessary commented code
 // const addUser = (email, password) =>
 //   db.one('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *', [email, password]);
 
+// bds: hooray, jsdoc!! :-D
+
 /**
  * Function to sign user up
+ * 
+ * // bds: no brackets around the descriptions for jsdoc
  * @param {String} email    [email user entered at sign up]
  * @param {String} password [password user entered at sign up]
+ * 
+ * // bds: jsdoc needs to indicate return value as well (@returns)
  */
 const addUser = (email, password) => {
   const query = `
