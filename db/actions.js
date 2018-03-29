@@ -1,19 +1,12 @@
 const db = require('./db_utils');
 
-// bds: Remove unnecessary commented code
-// const addUser = (email, password) =>
-//   db.one('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *', [email, password]);
-
-// bds: hooray, jsdoc!! :-D
-
 /**
  * Function to sign user up
- * 
+ *
  * // bds: no brackets around the descriptions for jsdoc
  * @param {String} email    [email user entered at sign up]
  * @param {String} password [password user entered at sign up]
- * 
- * // bds: jsdoc needs to indicate return value as well (@returns)
+ * @return {Promise}        [Promise resolving to object with user credentials]
  */
 const addUser = (email, password) => {
   const query = `
@@ -23,9 +16,6 @@ const addUser = (email, password) => {
   `;
   return db.one(query, [email, password]);
 };
-
-// const getUser = (email, password) =>
-//   db.one('SELECT * FROM users WHERE email=$1;', [email, password]);
 
 /**
  * Function to retrieve a user from db
@@ -42,12 +32,6 @@ const getUser = (email, password) => {
   return db.oneOrNone(query, [email, password]);
 };
 
-// const saveSearch = (searchTerm, userId) =>
-//   db.one('INSERT INTO searches (search_term, email) VALUES ($1, $2) RETURNING *;', [
-//     searchTerm,
-//     userId,
-//   ]);
-
 /**
  * Function to save searches made by a user
  * @param  {String} searchTerm [word(s) entered by user into search field]
@@ -62,9 +46,6 @@ const saveSearch = (searchTerm, userId) => {
   `;
   return db.one(query, [searchTerm, userId]);
 };
-
-// const getSearchHistory = email =>
-//   db.any('SELECT search_date, search_term FROM searches WHERE email = $1;', [email]);
 
 /**
  * Function to retrieve search history of a user

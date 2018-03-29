@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { saveSearch, getSearchHistory } = require('../db/actions');
+const axios = require('axios');
 
 // save searches in db
 router.post('/history', (req, res) => {
@@ -7,13 +8,11 @@ router.post('/history', (req, res) => {
   const { userID } = req.session;
 
   saveSearch(searchTerm, userID)
-  // bds: argument to .then needs to be a function, not a function call. 
-    .then(console.log('Saved this search into db'))
-
-    // bds: better. But make sure you console log the error, too. And 
-    // bds: "console.error" would be better here than "console.log"
+    .then(() => {
+      res.json({ message: `Successfully saved the search with term: ${searchTerm}` });
+    })
     .catch(err => {
-      console.log('Could not save this search to db');
+      res.json({ error: `Could not save search with term: ${searchTerm}` });
     });
 });
 
@@ -30,9 +29,23 @@ router.get('/history', (req, res) => {
         data: searches
       });
     })
-    // bds: same comments as the .catch above...
     .catch(err => {
-      console.log('Could not retrieve data from db');
+      res.json({ error: 'Could not get search history' });
+    });
+});
+
+//get info from external API
+const moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}`;
+
+router.get('/movie/:searchTerm', (req, res) => {
+  const { searchTerm } = req.params;
+  return axios
+    .get(`${moviesUrl}&query=${searchTerm}`)
+    .then(movies => {
+      res.json(movies.data);
+    })
+    .catch(err => {
+      res.json({ error: 'Could not get requested info' });
     });
 });
 

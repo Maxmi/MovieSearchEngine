@@ -1,5 +1,3 @@
--- bds: this needs to be part of npm run db:create
-
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (

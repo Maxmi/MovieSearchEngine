@@ -2,29 +2,36 @@
 
 A full-stack web application where users can sign-up, search for movies and look up history of their searches
 
-// bds: make a new section for "built with" and put these in a bulleted list, with links to the websites for each
-Built with Node.js, Express, Postgres, jquery AJAX, Pug.
+# Built with:
 
-// bds: remove colons (:) from section headers below
+* [Node.js](https://nodejs.org/)
+* [Express](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [jquery](https://jquery.com/)
+* [AJAX](api.jquery.com/jquery.ajax)
+* [Pug](https://pugjs.org/)
 
-# Deployed Site:
+# Deployed Site
 
 https://mighty-harbor-37647.herokuapp.com/
 
-// bds: update "mighty-harbor-37647" to "moviesearchengine-mira" or something more relevant
-
-# Getting Started:
+# Getting Started
 
 These instructions are for getting a copy of the project on your local environment.
 
-* Clone/Fork
+* Clone/Fork - `git clone https://github.com/Maxmi/MovieSearchEngine.git`
 * Install npm packages - `npm install`
 
-// bds: say *why* you want to make sure you don't have a db named moviesearchengine
-* Create database - `npm run db:create` (make sure you don't have a db named "moviesearchengine")
-* To run the app - `npm start`
+# Setting up your database
 
-// bds: say how to access the app once it's started
+* Create database - `npm run db:create` (make sure you don't have a db named "moviesearchengine" as this command will delete it)
+* Create tables - `npm run db:schema`
 
-// bds: There are no tests! YOU NEED TESTS in order for this to be a serious project.
-// bds: Include how to run the tests as part of your README.
+# Setting up your config
+
+* Run `cp .env.template .env` command in the terminal to create your own `.env` file and enter your config values in the `.env` file
+
+# Starting your development server
+
+* Run `npm start`
+* To access the app go to `localhost:3333`

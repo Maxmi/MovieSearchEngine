@@ -22,7 +22,8 @@ input {
   font-size: 14px;
 }
 
-input#email, input#password {
+input#email,
+input#password {
   width: 100%;
   margin: 10px;
   padding: 10px;
@@ -34,7 +35,10 @@ input#searchField {
   padding: 10px;
 }
 
-button#searchBtn, #loginBtn, #signupBtn, #goBacklink {
+button#searchBtn,
+#loginBtn,
+#signupBtn,
+#goBacklink {
   display: inline-block;
   padding: 10px 15px;
   font-family: serif, sans-serif, monospace;
@@ -56,7 +60,7 @@ a {
 }
 
 p {
-  color: red;
+  color: whi;
 }
 
 div#responseContainer {
@@ -67,10 +71,10 @@ div#responseContainer {
 div.movieInfo {
   width: 70%;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid black;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   opacity: 0.7;
   background-color: #ffffff;
   color: black;
@@ -95,7 +99,9 @@ table {
   color: black;
 }
 
-table, td, th {
+table,
+td,
+th {
   border: 1px solid white;
   border-collapse: collapse;
   padding: 5px;
@@ -105,11 +111,13 @@ th {
   text-align: center;
 }
 
-span.image, span.title, span.date {
+span.image,
+span.title {
   display: flex;
 }
 
-span.title, span.date {
-  margin: 50px;
-
+span.title,
+span.overview,
+span.date {
+  margin: 20px;
 }

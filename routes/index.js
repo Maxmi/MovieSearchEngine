@@ -6,11 +6,11 @@ router.use('/', userRoutes);
 router.use('/', searchRoutes);
 
 // route to home page
-router.get('/', (req, res) =>
+router.get('/', (req, res) => {
   res.render('index', {
     title: 'MovieSearchEngine',
     email: req.session.userID
-  })
-);
+  });
+});
 
 module.exports = router;

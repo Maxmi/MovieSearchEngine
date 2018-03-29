@@ -15,11 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   session({
     name: 'session',
-
-    // bds: this should not be in the file committed to github!! 
-    // It should be in a .env or config file that doesn't go to github
-    // Never commit your secrets to github ;-)
-    keys: ['supersecretkey']
+    keys: [process.env.SESSION_KEY]
   })
 );
 
