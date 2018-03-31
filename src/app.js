@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
-const routes = require('./routes/index');
+const routes = require('./routes');
 
 const port = process.env.PORT || 3333;
 const app = express();
@@ -20,7 +20,7 @@ app.use(
 );
 
 // serve static files from /public
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
 // setup views
 app.set('view engine', 'pug');
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

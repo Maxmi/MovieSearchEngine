@@ -2,7 +2,7 @@
   "name": "MovieSearchEngine",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "nodemon app.js",
     "db:create": "dropdb --if-exists moviesearchengine && createdb moviesearchengine",
@@ -46,6 +46,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.0",
     "mocha": "^5.0.5",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.17.3"
   }
 }
