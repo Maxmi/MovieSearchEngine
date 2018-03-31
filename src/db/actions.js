@@ -1,4 +1,4 @@
-const db = require('./db_utils');
+const db = require('./db');
 
 /**
  * Function to sign user up
@@ -35,22 +35,22 @@ const getUser = (email, password) => {
 /**
  * Function to save searches made by a user
  * @param  {String} searchTerm [word(s) entered by user into search field]
- * @param  {Number} userId     [user's id stored and retrieved from session]
+ * @param  {String} email      [user's email retrieved from session]
  * @return {Promise}           [Promise resolving to object with search data]
  */
-const saveSearch = (searchTerm, userId) => {
+const saveSearch = (searchTerm, email) => {
   const query = `
     INSERT INTO searches (search_term, email)
     VALUES ($1, $2)
     RETURNING *
   `;
-  return db.one(query, [searchTerm, userId]);
+  return db.one(query, [searchTerm, email]);
 };
 
 /**
  * Function to retrieve search history of a user
- * @param  {String} email [signed in user's email]
- * @return {Promise}      [Promise resolving to object with search history data ]
+ * @param  {String} email [signed in user's email taken from session]
+ * @return {Promise}      [Promise resolving to array of objects with search history data ]
  */
 const getSearchHistory = email => {
   const query = `
