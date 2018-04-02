@@ -1,18 +1,17 @@
 const pgp = require('pg-promise')();
 
 const makeConnectionString = () => {
-  console.log(process.env.DATABASE_URL)
   switch(process.env.NODE_ENV) {
-    case 'production':
-      return `${process.env.DATABASE_URL}?ssl=true`
-    case 'test':
-      return `${process.env.DATABASE_URL}_test?ssl=false`
-    default:
-      return process.env.DATABASE_URL
+  case 'production':
+    return `${process.env.DATABASE_URL}?ssl=true`;
+  case 'test':
+    return `${process.env.DATABASE_URL}_test?ssl=false`;
+  default:
+    return process.env.DATABASE_URL;
   }
-}
+};
 
-const connectionString = makeConnectionString()
+const connectionString = makeConnectionString();
 const db = pgp(connectionString);
 
 module.exports = db;
