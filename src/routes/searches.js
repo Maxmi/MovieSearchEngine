@@ -45,7 +45,6 @@ router.get('/movie/:searchTerm', (req, res) => {
       res.json(movies.data);
     })
     .catch(err => {
-      console.error(err)
       res.json({ error: 'Could not get requested info' });
     });
 });
