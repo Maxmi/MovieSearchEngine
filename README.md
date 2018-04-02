@@ -13,7 +13,7 @@ A full-stack web application where users can sign-up, search for movies and look
 
 # Deployed Site
 
-https://mighty-harbor-37647.herokuapp.com/
+https://moviesearch-mira.herokuapp.com/
 
 # Getting Started
 
